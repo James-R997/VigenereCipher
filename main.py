@@ -1,7 +1,6 @@
 #!/bin/python3
 
 from json import dump, load
-from os import chdir
 from string import ascii_uppercase
 from collections import Counter
 
@@ -23,20 +22,18 @@ STD_FREQ = {
     'J': 0.001965,        'Q': 0.001962
 }
 
-
-chdir("/home/jr/Coding/python/POPython2025/misc/krypton/FA")
-
-def getCipher() -> None:
+def getCipher(filesList:list[str]) -> None:
     cipherText = dict()
 
-    with open("data/found1", "r") as file:
-        file1 = file.read()
+    for f in filesList:
+        with open("data/found1", "r") as file:
+            file1 = file.read()
 
-    with open("data/found2", "r") as file:
-        file2 = file.read()
+        with open("data/found2", "r") as file:
+            file2 = file.read()
 
-    cipherText["found1"] = file1.replace(" ", "")
-    cipherText["found2"] = file2.replace(" ", "")
+        cipherText["found1"] = file1.replace(" ", "")
+        cipherText["found2"] = file2.replace(" ", "")
 
     with open("data/ciphers.json", "w") as file:
         dump(cipherText, file, indent=2)
